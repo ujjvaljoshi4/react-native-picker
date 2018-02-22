@@ -384,27 +384,28 @@
             
         }else if ([_numberCorrela isEqualToString:@"two"]){
             
-            if (component == 0)
+            if (component == 1)
             {
-                [self.cityArray removeAllObjects];
+                [self.provinceArray removeAllObjects];
                 
-                self.selectArry =[[self.dataDry objectAtIndex:row]objectForKey:[self.provinceArray objectAtIndex:row]];
+//                self.selectArry =[[self.dataDry objectAtIndex:row]objectForKey:[self.provinceArray objectAtIndex:row]];
+                self.selectArry =[[self.dataDry objectAtIndex:row] objectForKey:[self.cityArray objectAtIndex:row]];
                 
                 if (self.selectArry.count>0) {
                     
-                    [self.cityArray addObjectsFromArray:self.selectArry];
+                    [self.provinceArray addObjectsFromArray:self.selectArry];
                 }
                 else
                 {
-                    self.cityArray = nil;
+                    self.provinceArray = nil;
                 }
             }
-            [pickerView reloadComponent:1];
-            if (component==1) {
-                [pickerView selectRow:row inComponent:1 animated:YES];
+            [pickerView reloadComponent:0];
+            if (component==0) {
+                [pickerView selectRow:row inComponent:0 animated:YES];
                 
             }else{
-                [pickerView selectRow:0 inComponent:1 animated:YES];
+                [pickerView selectRow:0 inComponent:0 animated:YES];
             }
         }
     }
@@ -566,9 +567,11 @@
                 
                 NSArray *ary=[dic allKeys];
                 
-                [self.provinceArray addObject:[ary firstObject]];
+//                [self.provinceArray addObject:[ary firstObject]];
+                [self.cityArray addObject:[ary firstObject]];
             }
-            [self.cityArray addObjectsFromArray:[[self.dataDry objectAtIndex:0] objectForKey:[self.provinceArray objectAtIndex:0]]];
+//            [self.cityArray addObjectsFromArray:[[self.dataDry objectAtIndex:0] objectForKey:[self.provinceArray objectAtIndex:0]]];
+            [self.provinceArray addObjectsFromArray:[[self.dataDry objectAtIndex:0] objectForKey:[self.cityArray objectAtIndex:0]]];
         }
     }else
     {
